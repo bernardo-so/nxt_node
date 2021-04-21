@@ -5,11 +5,11 @@
     "username": "postgres",
     "password": "1234",
     "database": "nxt_node",
-    "entities": ["./src/models/**.ts"],
+    "entities": ["./src/entities/**.ts"],
     "migrations": [
-        "./src/migrations/**/*.ts"
+        "./src/database/migrations/**/*.ts"
      ],
      "cli": {
-        "migrationsDir": "./src/migrations"
+        "migrationsDir": "./src/database/migrations"
      }
  }

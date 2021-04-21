@@ -1,19 +1,19 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   Column,
   UpdateDateColumn
 } from "typeorm";
 
 import { v4 as uuid } from "uuid";
 
-@Entity("setting")
-export default class Setting {
-  @PrimaryGeneratedColumn("uuid")
+@Entity("settings")
+export default class Settings {
+  @PrimaryColumn()
   id: string;
 
   @Column()
-  user_name: string;
+  username: string;
 
   @Column()
   chat: boolean;
