@@ -1,12 +1,8 @@
-import express from "express";
-import "reflect-metadata";
-import "./database"
-import { routes } from "./routes";
+import { http } from "./http"
+import { CreateConnection } from "./services/CreateConnection";
+import "./websocket/client"
 
-const app = express();
+const createConnection: CreateConnection =  new CreateConnection();
+createConnection.createMainConnection();
 
-app.use(express.json());
-
-app.use(routes);
-
-app.listen(3333, () => console.log("Server is running on port 3333!"))
+http.listen(3333, () => console.log("Server is running on port 3333!"))

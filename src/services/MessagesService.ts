@@ -10,11 +10,11 @@ interface IMessageCreate {
 }
 
 class MessagesService {
-    private getConnection = new GetConnection(MessagesRepository);
+    private serviceConnection = new GetConnection(MessagesRepository);
     private messagesRepository: Repository<Message>;
 
     async create({ admin_id, text, user_id }: IMessageCreate) {
-        this.messagesRepository = await this.getConnection.open();
+        this.messagesRepository = await this.serviceConnection.open();
 
         const message = this.messagesRepository.create({
             admin_id,
@@ -23,19 +23,17 @@ class MessagesService {
         });
 
         await this.messagesRepository.save(message);
-        this.getConnection.close();
         return message;
     }
 
     async listByUser(user_id: string) {
-        this.messagesRepository = await this.getConnection.open();
+        this.messagesRepository = await this.serviceConnection.open();
 
         const list = await this.messagesRepository.find({
             where: { user_id },
             relations: ["user"]
         });
 
-        this.getConnection.close();
         return list;
     }
 }
